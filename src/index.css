@@ -1,0 +1,63 @@
+@import 'tailwindcss';
+
+/*
+  Palette lifted from the merge-accounts widget so the two widgets read as one
+  product. Derived from the ProPlaygrounds logo: brand blue, black, greys.
+*/
+@theme {
+  --color-brand: #3b7cc4;
+  --color-brand-dark: #2c619e;
+  --color-brand-tint: #eef4fb;
+  --color-ink: #16202e;
+
+  --color-surface: #f6f8fb;
+  --color-card: #ffffff;
+  --color-line: #e5eaf1;
+  --color-line-strong: #d4dce6;
+  --color-soft: #55606f;
+  --color-muted: #95a0b0;
+  --color-head: #f5f8fc;
+
+  --shadow-card:
+    0 1px 2px rgb(20 40 70 / 0.05), 0 6px 20px rgb(20 40 70 / 0.07);
+
+  --font-sans:
+    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--color-surface);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Shimmer for the loading skeleton — needs a gradient + keyframes, so it stays
+   as a plain class rather than a utility composition. */
+.skeleton {
+  border-radius: 6px;
+  background: linear-gradient(90deg, #eef0f4 25%, #f6f7f9 37%, #eef0f4 63%);
+  background-size: 400% 100%;
+  animation: shimmer 1.3s ease infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}

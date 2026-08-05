@@ -1,0 +1,30 @@
+{
+    "service": "CRM",
+    "config-info": {
+        "config": []
+    },
+    "cspallowedurls": [
+        {
+            "url": "https://live.zwidgets.com",
+            "cspoptions": "frame-src; script-src"
+        },
+        {
+            "url": "https://crm.zoho.com",
+            "cspoptions": "connect-src"
+        }
+    ],
+    "modules": {
+        "widgets": [
+            {
+                "id": "subs_rfp_email_widget",
+                "name": "Subs & Suppliers",
+                "type": "button",
+                "location": "crm.record.detailview.action",
+                "url": "/app/index.html",
+                "modules": [
+                    "RFPS"
+                ]
+            }
+        ]
+    }
+}

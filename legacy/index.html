@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+
+  </head>
+  <body>
+  	<style>
+		.primarybtn, .rep_primarybtn, .newSaveBtn {
+		    color: white !important;
+		    background-color: rgb(66, 162, 235) !important;
+		    box-shadow: none !important;
+		    border-radius: 2px !important;
+		    border-width: 1px !important;
+		    border-style: solid !important;
+		    border-color: rgb(66, 162, 235) !important;
+		    border-image: initial !important;
+		    padding: 5px 15px;
+		}
+		input::-webkit-input-placeholder{color:#999;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+		input::-moz-placeholder{color:#999;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-style:italic;}
+		input:-ms-input-placeholder{color:#999;}
+		input:focus{outline:none;}
+		input{font-family:"ProximaNovaRegular",Arial,sans-serif;margin:0;padding:0;font-size:1rem;}
+		a{color:#2C7BD0;outline:none medium;text-decoration:none;}
+		.mT0{margin-top:0!important;}
+		.hide{display:none;}
+		.dB{display:block;}
+		.dIB{display:inline-block;}
+		.pA{position:absolute;}
+		.pR{position:relative;}
+		.newtable{border-collapse:collapse;border-spacing:0;margin-bottom:10px;margin-top:5px;}
+		.newtable th,.newtable td{border-bottom:1px solid #f5f5f5;empty-cells:show;padding:7px 0 7px 12px;vertical-align:top;font-weight:normal;text-align:left;font-size:1rem;}
+		.newtable th,.newtable th a{font-size:.857rem;color:#9b9b9b;text-align:left;text-transform:uppercase;font-family:ProximaNovaLtSemibold,arial,sans-serif;-webkit-font-smoothing:antialiased;}
+		.newtable th{padding:9px 0 9px 10px;border-bottom:3px double #e5e5e5;border-top:1px solid #e5e5e5;}
+		.mR0{margin-right:0!important;}
+		input[type='radio']{cursor:pointer;}
+		#entityLookupdiv .rbCheckHtml input[type="radio"]{display:block!important;opacity:0;position:absolute;}
+		#entityLookupdiv .rbCheckHtml input[type="radio"]:focus+span{border:solid 1px #4da4f9;box-shadow:0 0 3px #4da4f9;}
+		input,span{outline:none;}
+		/*! CSS Used from: https://css.zohostatic.com/crm/css/crmsecondary_bb40a_.css */
+		.rbTickHtml{transition:.15s all ease-In-Out;-webkit-transition:.15s all ease-In-Out;border-radius:50%;background:#4ab4fe;width:7px;height:7px;border-top:none;border-left:none;transform:scale(0);-webkit-transform:scale(0);-moz-transform:scale(0);-ms-transform:scale(0);top:3px;left:3px;transform-origin:center;-webkit-transform-origin:center;-moz-transform-origin:center;-ms-transform-origin:center;}
+		input[type="radio"].rbRealHtml:checked+.rbHtml .rbTickHtml{transform:scale(1);-webkit-transform:scale(1);-moz-transform:scale(1);-ms-transform:scale(1);}
+		.hide{display:none!important;}
+		input{outline:none;}
+		:-ms-fullscreen{top:inherit!important;}
+		.rbCheckHtml{cursor:pointer;margin-right:20px;display:inline-block;}
+		.rbHtml{background:#fff;display:inline-block;vertical-align:middle;position:relative;width:13px;height:13px;border:1px solid #aaa;border-radius:50%;}
+		.rbHtml:after{content:"";display:inline-block;position:absolute;}
+		.rbTickHtml,.rbHtml:after{transition:.15s all ease-In-Out;-webkit-transition:.15s all ease-In-Out;border-radius:50%;background:#4da4f9;width:7px;height:7px;border-top:none;border-left:none;transform:scale(0);-webkit-transform:scale(0);-moz-transform:scale(0);-ms-transform:scale(0);top:3px;left:3px;transform-origin:center;-webkit-transform-origin:center;-moz-transform-origin:center;-ms-transform-origin:center;}
+		.rbCheckHtml:hover .rbHtml{border:1px solid #4da4f9;}
+		input[type="radio"].rbRealHtml:checked+.rbHtml .rbTickHtml,.rbCheckHtml input[type="radio"]:checked+.rbHtml:after{transform:scale(1);-webkit-transform:scale(1);-moz-transform:scale(1);-ms-transform:scale(1);}
+		.rbCheckHtml input[type="radio"]{display:none;}
+		.hide{display:none!important;}
+		
+		input:focus{outline:none;}
+  	</style>
+		<div class="topband">
+			<h1>Subs & Suppliers</h1>
+			<p>Subs and Suppliers related to this Sub Contract</p>
+		</div>
+		<!-- <textarea rows="6" cols="100" id="console" contenteditable="true"></textarea> -->
+		<div id="email_data_table"></div>
+		<input type="hidden" id="selected_course_id" value="">
+		
+				
+		<script id="email_summery" type="text/x-handlebars-template">
+			<div class="w100p">
+				<div clsss="w100p" style="overflow:auto;">
+					<table style="width:100%; text-align:center" class="newtable mT0">
+						<tbody>
+						<tr>
+							<th>Action</th>
+							<th>Subs Name</th> 
+							<th>Primary Type</th>
+							<th>Secondary Type</th>
+							<th>Email</th>
+						</tr>
+						{{#each subs.data}}
+						{{#unless Do_Not_Use}}
+							<tr>
+								<td><button class="primarybtn sendemail" data-subs="{{id}}" >Send E-Mail</button></td>
+								<td>{{CustomModule4_Name}}</td>
+								<td>{{Pick_List_2}}</td> 
+								<td>{{Secondary_Type}}</td>
+								<td>{{Email}}</td>
+							</tr>
+						{{/unless}}
+						{{/each}}
+					</tbody>
+					</table>
+				</div>
+			</div>
+		</script>
+	</body>
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+  <script src="https://live.zwidgets.com/js-sdk/1.0/ZohoEmbededAppSDK.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+  <script src="js/email_button.js"></script>
+</html>
