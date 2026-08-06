@@ -56,7 +56,7 @@ export const WIDGET_SIZE = {
 // ZOHO.CRM.FUNCTIONS.execute (session-authenticated) when convenient.
 export const SEND_EMAIL_FUNCTION = {
   name: 'send_email_to_sub',
-  url: 'https://crm.zoho.com/crm/v2/functions/send_email_to_sub/actions/execute?auth_type=apikey&zapikey=1003.b358cc534f1f0d212f68ac67f7f15fb7.f0ede0ea26f91f8cf8c0b637e16613c3',
+  url: 'https://www.zohoapis.com/crm/v7/functions/send_email_to_sub/actions/execute?auth_type=apikey&zapikey=1003.cd8e6364e7eb50fd29dc189cf6248c4d.ff2de82a7719bfa4a8954a0566db0d4a',
 }
 
 // Field API names rendered in the table, in display order.

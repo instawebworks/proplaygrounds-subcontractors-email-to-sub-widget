@@ -127,13 +127,16 @@ export async function fetchVendorsByType(installerType) {
 
 /** Invokes the Deluge function that emails one subcontractor. */
 export async function sendEmailToSub({ subsId, subContractId }) {
-  const raw = await requireSdk().CRM.HTTP.post({
-    url: SEND_EMAIL_FUNCTION.url,
-    params: {
-      subs_id: subsId,
-      sub_cont_id: subContractId,
-    },
-  })
+  // The function endpoint reads its arguments from the query string. Passing
+  // them as `params` (a POST body) makes them arrive null, and the function
+  // then reports "Sub Contract null was not found" — verified against the live
+  // endpoint, so build the URL explicitly rather than trusting serialisation.
+  const url =
+    `${SEND_EMAIL_FUNCTION.url}` +
+    `&sub_cont_id=${encodeURIComponent(subContractId)}` +
+    `&subs_id=${encodeURIComponent(subsId)}`
+
+  const raw = await requireSdk().CRM.HTTP.post({ url })
 
   let parsed
   try {
